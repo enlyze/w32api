@@ -2777,7 +2777,7 @@ typedef struct _TC_KEYDOWN {
 	WORD wVKey;
 	UINT flags;
 } TC_KEYDOWN;
-#if (_WIN32_IE >= 0x0300)
+#if (_WIN32_IE >= 0x0300) || (_WIN32_WCE >= 0x200)
 typedef struct tagINITCOMMONCONTROLSEX {
 	DWORD dwSize;
 	DWORD dwICC;
@@ -3103,7 +3103,7 @@ BOOL WINAPI ImageList_Write(HIMAGELIST,LPSTREAM);
 HIMAGELIST WINAPI ImageList_Duplicate(HIMAGELIST himl);
 #endif
 void WINAPI InitCommonControls(void);
-#if (_WIN32_IE >= 0x0300)
+#if (_WIN32_IE >= 0x0300) || (_WIN32_WCE >= 0x200)
 BOOL WINAPI InitCommonControlsEx(LPINITCOMMONCONTROLSEX);
 #endif
 #if (_WIN32_IE >= 0x0500)
