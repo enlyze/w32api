@@ -939,7 +939,7 @@ extern "C" {
 #define LVS_OWNERDRAWFIXED	0x400
 #define LVS_NOCOLUMNHEADER	0x4000
 #define LVS_NOSORTHEADER	0x8000
-#if (_WIN32_IE >= 0x0300)
+#if (_WIN32_IE >= 0x0300) || (_WIN32_WCE >= 0x300)
 #define CDIS_CHECKED 8
 #define CDIS_DEFAULT 32
 #define CDIS_DISABLED 4
@@ -1201,18 +1201,22 @@ extern "C" {
 #define LVM_GETITEMSPACING	(LVM_FIRST+51)
 #define LVM_GETISEARCHSTRINGA	(LVM_FIRST+52)
 #define LVM_GETISEARCHSTRINGW	(LVM_FIRST+117)
-#if (_WIN32_IE >= 0x0300)
+#if (_WIN32_IE >= 0x0300) || (_WIN32_WCE >= 0x300)
 #define LVM_APPROXIMATEVIEWRECT (LVM_FIRST+64)
 #define LVM_SETEXTENDEDLISTVIEWSTYLE (LVM_FIRST+54)
 #define LVM_GETEXTENDEDLISTVIEWSTYLE (LVM_FIRST+55)
 #define LVM_SETCOLUMNORDERARRAY (LVM_FIRST+58)
 #define LVM_GETCOLUMNORDERARRAY (LVM_FIRST+59)
 #define LVM_GETHEADER (LVM_FIRST+31)
+#if (_WIN32_IE >= 0x0300)
 #define LVM_GETHOTCURSOR (LVM_FIRST+63)
 #define LVM_GETHOTITEM (LVM_FIRST+61)
+#endif
 #define LVM_GETSUBITEMRECT (LVM_FIRST+56)
+#if (_WIN32_IE >= 0x0300)
 #define LVM_SETHOTCURSOR (LVM_FIRST+62)
 #define LVM_SETHOTITEM (LVM_FIRST+60)
+#endif
 #define LVM_SETICONSPACING (LVM_FIRST+53)
 #define LVM_SUBITEMHITTEST (LVM_FIRST+57)
 #endif
@@ -3314,18 +3318,22 @@ BOOL WINAPI _TrackMouseEvent(LPTRACKMOUSEEVENT);
 #define TreeView_SortChildrenCB(w,s,r) (BOOL)SNDMSG((w),TVM_SORTCHILDRENCB,r,(LPARAM)(LPTVSORTCB)(s))
 #define TreeView_EndEditLabelNow(w,f) (BOOL)SNDMSG((w),TVM_ENDEDITLABELNOW,f,0)
 #define TreeView_GetISearchString(w,s) (BOOL)SNDMSG((w),TVM_GETISEARCHSTRING,0,(LPARAM)s)
-#if (_WIN32_IE >= 0x0300)
+#if (_WIN32_IE >= 0x0300) || (_WIN32_WCE >= 0x300)
 #define ListView_ApproximateViewRect(w,iw,ih,i) (DWORD)SNDMSG((w),LVM_APPROXIMATEVIEWRECT,(i),MAKELPARAM((iw),(ih)))
 #define ListView_SetExtendedListViewStyle(w,s) (DWORD)SNDMSG((w),LVM_SETEXTENDEDLISTVIEWSTYLE,0,(s))
 #define ListView_GetExtendedListViewStyle(w) (DWORD)SNDMSG((w),LVM_GETEXTENDEDLISTVIEWSTYLE,0,0)
 #define ListView_SetColumnOrderArray(w,i,a) (BOOL)SNDMSG((w),LVM_SETCOLUMNORDERARRAY,(WPARAM)(i),(LPARAM)(LPINT)(a))
 #define ListView_GetColumnOrderArray(w,i,a) (BOOL)SNDMSG((w),LVM_GETCOLUMNORDERARRAY,(WPARAM)(i),(LPARAM)(LPINT)(a))
 #define ListView_GetHeader(w) (HWND)SNDMSG((w),LVM_GETHEADER,0,0)
+#if (_WIN32_IE >= 0x0300)
 #define ListView_GetHotCursor(w) (HCURSOR)SNDMSG((w),LVM_GETHOTCURSOR,0,0)
 #define ListView_GetHotItem(w) (INT)SNDMSG((w),LVM_GETHOTITEM,0,0)
+#endif
 #define ListView_GetSubItemRect(w,i,is,c,p) (BOOL)SNDMSG((w),LVM_GETSUBITEMRECT,(WPARAM)(int)(i),((p)?(((LPRECT)(p))->left=(c),(((LPRECT)(p))->top=(is)),(LPARAM)(LPRECT)(p)):0))
+#if (_WIN32_IE >= 0x0300)
 #define ListView_SetHotCursor(w,c) (HCURSOR)SNDMSG((w),LVM_SETHOTCURSOR,0,(LPARAM)(c))
 #define ListView_SetHotItem(w,i) (int)SNDMSG((w),LVM_SETHOTITEM,(WPARAM)(i),0)
+#endif
 #define ListView_SetIconSpacing(w,x,y) (DWORD)SNDMSG((w),LVM_SETICONSPACING,0,MAKELONG(x,y))
 #define ListView_SubItemHitTest(w,p) (INT)SNDMSG((w),LVM_SUBITEMHITTEST,0,(LPARAM)(LPLVHITTESTINFO)(p))
 #define ListView_SetItemCountEx(w,i,f) (void)SNDMSG((w),LVM_SETITEMCOUNT,(WPARAM)(i),(LPARAM)(f))
